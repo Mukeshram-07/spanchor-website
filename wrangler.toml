@@ -1,18 +1,20 @@
 # Cloudflare Pages Configuration
-# This configuration enables deployment of SPANCHOR v0.3.0 to Cloudflare Pages
+# For Cloudflare Pages deployment with GitHub integration
 
-name = "spanchor"
-type = "javascript"
-account_id = ""
-workers_dev = true
-route = ""
-zone_id = ""
-main = "dist/index.html"
-build = { command = "npm run build", cwd = ".", watch_paths = ["src/**/*.tsx", "src/**/*.ts"] }
-env = { production = { vars = { ENVIRONMENT = "production" } } }
+name = "spanchor-website"
 
-# Pages-specific configuration
-pages_build_output_dir = "dist"
+# Pages-specific build configuration
+[build]
+command = "npm run build"
+cwd = "."
 
-# Compatibility settings for SPA
+# Output directory for Pages
+[build.environment]
+NODE_VERSION = "24.18.0"
+
+# SPA compatibility - automatically serve index.html for client-side routing
+[site]
+include = ["dist"]
+
+# Compatibility with modern JavaScript
 compatibility_date = "2024-01-01"
